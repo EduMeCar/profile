@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduardo Mejía | Operations & Tech</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-main: #1a1a1a;
+            --text-secondary: #666;
+            --accent: #2563eb; /* Azul Corporativo Tech */
+            --card-bg: #ffffff;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 40px;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .hero .badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--text-main);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover { background-color: #000; transform: translateY(-2px); }
+
+        /* GRID DE PROYECTOS */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-color: var(--accent);
+        }
+
+        .card-icon { font-size: 2rem; margin-bottom: 15px; }
+        
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-link::after { content: " →"; margin-left: 5px; }
+
+        /* TIMELINE EXPRESS */
+        .timeline {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 20px;
+            border-top: 1px solid #e5e7eb;
+            margin-top: 20px;
+        }
+
+        .timeline h3 { margin-bottom: 20px; font-size: 1.5rem; }
+
+        .job-item {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: baseline;
+        }
+
+        .job-year {
+            width: 120px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .job-desc strong { display: block; color: var(--text-main); }
+        .job-desc span { color: var(--text-secondary); font-size: 0.95rem; }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .job-item { flex-direction: column; }
+            .job-year { margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>Eduardo Mejía</h1>
+        <h2>Economista | Operations Manager | Tech Enthusiast</h2>
+        
+        <div class="badges">
+            <span class="badge">Python</span>
+            <span class="badge">SQL</span>
+            <span class="badge">Data Analysis</span>
+            <span class="badge">Business Strategy</span>
+            <span class="badge">IA Generativa</span>
+        </div>
+
+        <p style="color: #555; margin-bottom: 30px; font-size: 1.1rem;">
+            Conecto la estrategia de negocio con la tecnología. <br>
+            Más de 5 años gestionando operaciones complejas y desarrollando soluciones digitales.
+        </p>
+
+        <a href="https://www.linkedin.com/in/edumecar/" class="cta-button" target="_blank">Ver LinkedIn</a>
+    </section>
+
+    <div class="grid-container">
+        
+        <a href="https://edumecar.github.io/Book/" class="card" target="_blank">
+            <div class="card-content">
+                <div class="card-icon">💻</div>
+                <h3>SaaS Booking System</h3>
+                <p>Aplicación web completa para la gestión de reservas y agendas de recursos. Desarrollada con Python (Streamlit) e IA.</p>
+            </div>
+            <div class="card-link">Ver Demo App</div>
+        </a>
+
+        <a href="https://edumecar.github.io/SQL-DECK/" class="card" target="_blank">
+            <div class="card-content">
+                <div class="card-icon">📊</div>
+                <h3>Data Intelligence (SQL)</h3>
+                <p>Dashboard interactivo y consultas SQL para visualización de datos complejos y toma de decisiones.</p>
+            </div>
+            <div class="card-link">Ver Proyecto de Datos</div>
+        </a>
+
+        <a href="https://edumecar.github.io/portfolio/" class="card" target="_blank">
+            <div class="card-content">
+                <div class="card-icon">🌍</div>
+                <h3>International Operations</h3>
+                <p>Portfolio de gestión operativa: +300 eventos internacionales, negociación de contratos y logística de partners (Music Industry).</p>
+            </div>
+            <div class="card-link">Ver Portfolio de Gestión</div>
+        </a>
+
+    </div>
+
+    <section class="timeline">
+        <h3>Trayectoria Profesional</h3>
+        
+        <div class="job-item">
+            <div class="job-year">2024 - 2025</div>
+            <div class="job-desc">
+                <strong>AI Data Analyst & Trust Safety</strong>
+                <span>Telus International (Proyecto Meta) - Barcelona</span>
+            </div>
+        </div>
+
+        <div class="job-item">
+            <div class="job-year">2024</div>
+            <div class="job-desc">
+                <strong>Cultural Operations Support</strong>
+                <span>MNAC (Museu Nacional d'Art de Catalunya) - Barcelona</span>
+            </div>
+        </div>
+
+        <div class="job-item">
+            <div class="job-year">2020 - 2023</div>
+            <div class="job-desc">
+                <strong>Partner Success & Operations Manager</strong>
+                <span>Gestión Internacional de Negocio (Sector Creativo)</span>
+            </div>
+        </div>
+
+        <div class="job-item">
+            <div class="job-year">2018 - 2020</div>
+            <div class="job-desc">
+                <strong>Coordinador Docente & Liderazgo</strong>
+                <span>Enseña por México (Teach For All)</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Eduardo Mejía. Desarrollado con 🧠 y Código.
+    </footer>
+
+</body>
+</html>
