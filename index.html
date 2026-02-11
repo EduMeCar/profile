@@ -1,272 +1,729 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eduardo Mejía | Operations & Tech</title>
+    <title>EDUARDO MEJÍA — THE HYBRID SOLVER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         :root {
-            --bg-color: #f8f9fa;
-            --text-main: #1a1a1a;
-            --text-secondary: #666;
-            --accent: #2563eb; /* Azul Corporativo Tech */
-            --card-bg: #ffffff;
-            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --black: #0A0A0A;
+            --white: #FAFAFA;
+            --red: #FF3333;
+            --cyan: #00FFFF;
+            --yellow: #FFFF00;
+            --gray: #808080;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            line-height: 1.4;
+            overflow-x: hidden;
         }
-
-        /* HERO SECTION */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
-            max-width: 800px;
+        
+        ::selection {
+            background: var(--cyan);
+            color: var(--black);
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-            color: #111;
+        
+        /* BRUTAL HEADER */
+        .header {
+            padding: 40px 20px;
+            border-bottom: 4px solid var(--white);
+            position: relative;
         }
-
-        .hero h2 {
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
+        
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
         }
-
-        .hero .badges {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+        
+        h1 {
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
-
-        .badge {
-            background: #e0e7ff;
-            color: #3730a3;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .cta-button {
+        
+        .glitch {
+            position: relative;
             display: inline-block;
-            background-color: var(--text-main);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s;
         }
-
-        .cta-button:hover { background-color: #000; transform: translateY(-2px); }
-
-        /* GRID DE PROYECTOS */
-        .grid-container {
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--red);
+            animation: glitch-1 2s infinite;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 var(--cyan);
+            animation: glitch-2 2s infinite;
+        }
+        
+        @keyframes glitch-1 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(10px 0 85% 0); }
+            40% { clip-path: inset(20% 0 60% 0); }
+            60% { clip-path: inset(60% 0 20% 0); }
+            80% { clip-path: inset(85% 0 10px 0); }
+        }
+        
+        @keyframes glitch-2 {
+            0%, 100% { clip-path: inset(0 0 0 0); }
+            20% { clip-path: inset(85% 0 10px 0); }
+            40% { clip-path: inset(60% 0 20% 0); }
+            60% { clip-path: inset(20% 0 60% 0); }
+            80% { clip-path: inset(10px 0 85% 0); }
+        }
+        
+        .tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--cyan);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .lang-switch {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .lang-switch button {
+            background: none;
+            border: 2px solid var(--white);
+            color: var(--white);
+            padding: 8px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        
+        .lang-switch button:first-child {
+            border-right: none;
+        }
+        
+        .lang-switch button.active {
+            background: var(--white);
+            color: var(--black);
+        }
+        
+        .lang-switch button:hover:not(.active) {
+            background: var(--red);
+            border-color: var(--red);
+        }
+        
+        /* BRUTAL GRID */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .statement {
+            padding: 60px 20px;
+            border-bottom: 4px solid var(--white);
+        }
+        
+        .statement p {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            line-height: 1.3;
+            max-width: 900px;
+            font-weight: 500;
+        }
+        
+        .statement .highlight {
+            background: var(--yellow);
+            color: var(--black);
+            padding: 0 8px;
+            display: inline-block;
+        }
+        
+        .weapons {
+            padding: 60px 20px;
+            border-bottom: 4px solid var(--white);
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .weapon-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
-            padding: 40px 20px;
+            gap: 4px;
+            background: var(--white);
+            padding: 4px;
         }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 30px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-color: var(--accent);
-        }
-
-        .card-icon { font-size: 2rem; margin-bottom: 15px; }
         
-        .card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .card-link {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-        }
-
-        .card-link::after { content: " →"; margin-left: 5px; }
-
-        /* TIMELINE EXPRESS */
-        .timeline {
-            max-width: 800px;
-            width: 100%;
-            padding: 40px 20px;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 20px;
-        }
-
-        .timeline h3 { margin-bottom: 20px; font-size: 1.5rem; }
-
-        .job-item {
-            display: flex;
-            margin-bottom: 20px;
-            align-items: baseline;
-        }
-
-        .job-year {
-            width: 120px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .job-desc strong { display: block; color: var(--text-main); }
-        .job-desc span { color: var(--text-secondary); font-size: 0.95rem; }
-
-        footer {
-            margin-top: auto;
+        .weapon {
+            background: var(--black);
             padding: 40px;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
         }
-
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
-            .job-item { flex-direction: column; }
-            .job-year { margin-bottom: 5px; }
+        
+        .weapon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--white), transparent);
+            transition: left 0.5s;
+        }
+        
+        .weapon:hover::before {
+            left: 100%;
+        }
+        
+        .weapon:hover {
+            background: var(--red);
+        }
+        
+        .weapon-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .weapon h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .weapon p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .weapon:hover p {
+            color: var(--white);
+        }
+        
+        .weapon-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--cyan);
+            text-decoration: none;
+            display: inline-block;
+            border-bottom: 2px solid var(--cyan);
+            transition: all 0.2s;
+        }
+        
+        .weapon-link:hover {
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
+        
+        /* BRUTAL TIMELINE */
+        .timeline {
+            padding: 60px 20px;
+            border-bottom: 4px solid var(--white);
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .timeline-content .company {
+            color: var(--gray);
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .timeline-content .achievement {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--yellow);
+            margin-top: 12px;
+        }
+        
+        /* THE PROOF */
+        .proof {
+            padding: 60px 20px;
+            border-bottom: 4px solid var(--white);
+        }
+        
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4px;
+            background: var(--white);
+            padding: 4px;
+        }
+        
+        .proof-item {
+            background: var(--black);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .proof-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--cyan);
+        }
+        
+        .proof-item p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        /* CONTACT */
+        .contact {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .contact h2 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--white);
+            text-decoration: none;
+            padding: 15px 30px;
+            border: 3px solid var(--white);
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        
+        .contact-links a:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0 var(--red);
+        }
+        
+        /* FOOTER */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--gray);
+            border-top: 4px solid var(--white);
+        }
+        
+        /* LANGUAGE TOGGLE */
+        .lang-content {
+            display: none;
+        }
+        
+        .lang-content.active {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .weapon-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-
-    <section class="hero">
-        <h1>Eduardo Mejía</h1>
-        <h2>Economista | Operations Manager | Tech Enthusiast</h2>
-        
-        <div class="badges">
-            <span class="badge">Python</span>
-            <span class="badge">SQL</span>
-            <span class="badge">Data Analysis</span>
-            <span class="badge">Business Strategy</span>
-            <span class="badge">IA Generativa</span>
+    <div class="noise"></div>
+    
+    <header class="header">
+        <div class="container">
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="es">ES</button>
+            </div>
+            
+            <h1>
+                <span class="glitch" data-text="EDUARDO MEJÍA">EDUARDO MEJÍA</span>
+            </h1>
+            
+            <div class="lang-content active" data-lang-content="en">
+                <p class="tagline">THE HYBRID SOLVER — BCN</p>
+            </div>
+            <div class="lang-content" data-lang-content="es">
+                <p class="tagline">EL SOLUCIONADOR HÍBRIDO — BCN</p>
+            </div>
         </div>
-
-        <p style="color: #555; margin-bottom: 30px; font-size: 1.1rem;">
-            Conecto la estrategia de negocio con la tecnología. <br>
-            Más de 5 años gestionando operaciones complejas y desarrollando soluciones digitales.
-        </p>
-
-        <a href="https://www.linkedin.com/in/edumecar/" class="cta-button" target="_blank">Ver LinkedIn</a>
+    </header>
+    
+    <!-- STATEMENT -->
+    <section class="statement">
+        <div class="container">
+            <div class="lang-content active" data-lang-content="en">
+                <p>
+                    I don't need a dev team to prototype an idea. <span class="highlight">I build my own tools</span> using AI. 
+                    I've managed $100k+ contracts, bought property with my P&L management, and I speak the language of 
+                    both <span class="highlight">your developers and your clients</span>.
+                </p>
+            </div>
+            <div class="lang-content" data-lang-content="es">
+                <p>
+                    No necesito un equipo de desarrolladores para prototipar una idea. <span class="highlight">Construyo mis propias herramientas</span> usando IA. 
+                    He gestionado contratos de +$100k, compré un inmueble con mi gestión de P&L, y hablo el idioma tanto de 
+                    <span class="highlight">tus desarrolladores como de tus clientes</span>.
+                </p>
+            </div>
+        </div>
     </section>
-
-    <div class="grid-container">
-        
-        <a href="https://edumecar.github.io/Book/" class="card" target="_blank">
-            <div class="card-content">
-                <div class="card-icon">💻</div>
-                <h3>SaaS Booking System</h3>
-                <p>Aplicación web completa para la gestión de reservas y agendas de recursos. Desarrollada con Python (Streamlit) e IA.</p>
+    
+    <!-- WEAPONS -->
+    <section class="weapons">
+        <div class="container">
+            <div class="lang-content active" data-lang-content="en">
+                <h2 class="section-title">WEAPONS // DIGITAL ASSETS</h2>
             </div>
-            <div class="card-link">Ver Demo App</div>
-        </a>
-
-        <a href="https://edumecar.github.io/SQL-DECK/" class="card" target="_blank">
-            <div class="card-content">
-                <div class="card-icon">📊</div>
-                <h3>Data Intelligence (SQL)</h3>
-                <p>Dashboard interactivo y consultas SQL para visualización de datos complejos y toma de decisiones.</p>
+            <div class="lang-content" data-lang-content="es">
+                <h2 class="section-title">ARMAS // ACTIVOS DIGITALES</h2>
             </div>
-            <div class="card-link">Ver Proyecto de Datos</div>
-        </a>
-
-        <a href="https://edumecar.github.io/portfolio/" class="card" target="_blank">
-            <div class="card-content">
-                <div class="card-icon">🌍</div>
-                <h3>International Operations</h3>
-                <p>Portfolio de gestión operativa: +300 eventos internacionales, negociación de contratos y logística de partners (Music Industry).</p>
+            
+            <div class="weapon-grid">
+                <div class="weapon">
+                    <div class="weapon-number">01</div>
+                    <div class="lang-content active" data-lang-content="en">
+                        <h3>BOOKING PLANS</h3>
+                        <p>Full-stack reservation management system. Built with Python (Streamlit) + AI. Demonstrates product vision and rapid prototyping capability.</p>
+                        <a href="https://edumecar.github.io/Book/" class="weapon-link" target="_blank">DEPLOY →</a>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h3>BOOKING PLANS</h3>
+                        <p>Sistema completo de gestión de reservas. Construido con Python (Streamlit) + IA. Demuestra visión de producto y capacidad de prototipado rápido.</p>
+                        <a href="https://edumecar.github.io/Book/" class="weapon-link" target="_blank">DEPLOY →</a>
+                    </div>
+                </div>
+                
+                <div class="weapon">
+                    <div class="weapon-number">02</div>
+                    <div class="lang-content active" data-lang-content="en">
+                        <h3>SQL-DECK</h3>
+                        <p>Interactive data dashboard. Complex queries for decision-making. Auditor mindset: data tells stories, numbers back decisions.</p>
+                        <a href="https://edumecar.github.io/SQL-DECK/" class="weapon-link" target="_blank">ANALYZE →</a>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h3>SQL-DECK</h3>
+                        <p>Dashboard interactivo de datos. Consultas complejas para toma de decisiones. Mentalidad de auditor: los datos cuentan historias, los números respaldan decisiones.</p>
+                        <a href="https://edumecar.github.io/SQL-DECK/" class="weapon-link" target="_blank">ANALIZAR →</a>
+                    </div>
+                </div>
+                
+                <div class="weapon">
+                    <div class="weapon-number">03</div>
+                    <div class="lang-content active" data-lang-content="en">
+                        <h3>OPERATIONS PORTFOLIO</h3>
+                        <p>300+ international events. $100k+ contract negotiations. Partner logistics (Music Industry). Chaos under control.</p>
+                        <a href="https://edumecar.github.io/portfolio/" class="weapon-link" target="_blank">EVIDENCE →</a>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h3>PORTFOLIO OPERACIONES</h3>
+                        <p>+300 eventos internacionales. Negociación de contratos +$100k. Logística de partners (Industria Musical). Caos bajo control.</p>
+                        <a href="https://edumecar.github.io/portfolio/" class="weapon-link" target="_blank">EVIDENCIA →</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-link">Ver Portfolio de Gestión</div>
-        </a>
-
-    </div>
-
+        </div>
+    </section>
+    
+    <!-- TIMELINE -->
     <section class="timeline">
-        <h3>Trayectoria Profesional</h3>
-        
-        <div class="job-item">
-            <div class="job-year">2024 - 2025</div>
-            <div class="job-desc">
-                <strong>AI Data Analyst & Trust Safety</strong>
-                <span>Telus International (Proyecto Meta) - Barcelona</span>
+        <div class="container">
+            <div class="lang-content active" data-lang-content="en">
+                <h2 class="section-title">TRAJECTORY // STREET CRED</h2>
             </div>
-        </div>
-
-        <div class="job-item">
-            <div class="job-year">2024</div>
-            <div class="job-desc">
-                <strong>Cultural Operations Support</strong>
-                <span>MNAC (Museu Nacional d'Art de Catalunya) - Barcelona</span>
+            <div class="lang-content" data-lang-content="es">
+                <h2 class="section-title">TRAYECTORIA // CREDIBILIDAD</h2>
             </div>
-        </div>
-
-        <div class="job-item">
-            <div class="job-year">2020 - 2023</div>
-            <div class="job-desc">
-                <strong>Partner Success & Operations Manager</strong>
-                <span>Gestión Internacional de Negocio (Sector Creativo)</span>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2024-2025</div>
+                <div class="timeline-content">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>AI Data Analyst & Trust Safety</h4>
+                        <p class="company">Telus International (Meta Project) — Barcelona</p>
+                        <p>AI data analysis, safety policies, content moderation</p>
+                        <p class="achievement">→ Multinational tech environment</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>AI Data Analyst & Trust Safety</h4>
+                        <p class="company">Telus International (Proyecto Meta) — Barcelona</p>
+                        <p>Análisis de datos de IA, políticas de seguridad, moderación de contenido</p>
+                        <p class="achievement">→ Entorno tecnológico multinacional</p>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="job-item">
-            <div class="job-year">2018 - 2020</div>
-            <div class="job-desc">
-                <strong>Coordinador Docente & Liderazgo</strong>
-                <span>Enseña por México (Teach For All)</span>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>Cultural Operations Support</h4>
+                        <p class="company">MNAC (National Art Museum of Catalonia) — Barcelona</p>
+                        <p>Operational management of cultural events and institutional exhibitions</p>
+                        <p class="achievement">→ Local Barcelona adaptation</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>Soporte de Operaciones Culturales</h4>
+                        <p class="company">MNAC (Museu Nacional d'Art de Catalunya) — Barcelona</p>
+                        <p>Gestión operativa de eventos culturales y exposiciones institucionales</p>
+                        <p class="achievement">→ Adaptación local Barcelona</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2020-2023</div>
+                <div class="timeline-content">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>Partner Success & Operations Manager</h4>
+                        <p class="company">International Business Management (Creative Sector)</p>
+                        <p>Artist management, contract negotiation, P&L international management</p>
+                        <p class="achievement">→ $100k+ contracts · Pepsi Sync · Bought property with earnings</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>Partner Success & Operations Manager</h4>
+                        <p class="company">Gestión Internacional de Negocio (Sector Creativo)</p>
+                        <p>Gestión de artistas, negociación de contratos, gestión de P&L internacional</p>
+                        <p class="achievement">→ Contratos +$100k · Pepsi Sync · Compra de inmueble con ganancias</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2018-2020</div>
+                <div class="timeline-content">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>Teaching Coordinator & Leadership</h4>
+                        <p class="company">Enseña por México (Teach For All)</p>
+                        <p>Educational leadership in high social vulnerability contexts</p>
+                        <p class="achievement">→ Empathy · Public communication · People management</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>Coordinador Docente & Liderazgo</h4>
+                        <p class="company">Enseña por México (Teach For All)</p>
+                        <p>Liderazgo educativo en contextos de alta vulnerabilidad social</p>
+                        <p class="achievement">→ Empatía · Comunicación pública · Gestión de personas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-year">2016-2018</div>
+                <div class="timeline-content">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>Economic Analyst</h4>
+                        <p class="company">CNBV (National Banking Commission) — México</p>
+                        <p>Financial risk analysis and regulatory supervision of banking sector</p>
+                        <p class="achievement">→ Auditor mindset · Rigor · Financial analysis</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>Analista Económico</h4>
+                        <p class="company">CNBV (Comisión Nacional Bancaria y de Valores) — México</p>
+                        <p>Análisis de riesgos financieros y supervisión regulatoria del sector bancario</p>
+                        <p class="achievement">→ Mentalidad de auditor · Rigor · Análisis financiero</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
+    
+    <!-- THE PROOF -->
+    <section class="proof">
+        <div class="container">
+            <div class="lang-content active" data-lang-content="en">
+                <h2 class="section-title">CREDENTIALS // THE PROOF</h2>
+            </div>
+            <div class="lang-content" data-lang-content="es">
+                <h2 class="section-title">CREDENCIALES // LA PRUEBA</h2>
+            </div>
+            
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>GOOGLE CYBERSECURITY</h4>
+                        <p>Professional Certificate</p>
+                        <p>Python · Linux · Risk Management</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>GOOGLE CYBERSECURITY</h4>
+                        <p>Certificado Profesional</p>
+                        <p>Python · Linux · Gestión de Riesgos</p>
+                    </div>
+                </div>
+                
+                <div class="proof-item">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>BUSINESS ANALYTICS</h4>
+                        <p>Tecnológico de Monterrey</p>
+                        <p>Data Analysis · SQL · BI</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>BUSINESS ANALYTICS</h4>
+                        <p>Tecnológico de Monterrey</p>
+                        <p>Análisis de Datos · SQL · BI</p>
+                    </div>
+                </div>
+                
+                <div class="proof-item">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>ECONOMICS DEGREE</h4>
+                        <p>Instituto Politécnico Nacional</p>
+                        <p>Official License (Cédula)</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>LIC. EN ECONOMÍA</h4>
+                        <p>Instituto Politécnico Nacional</p>
+                        <p>Título Oficial (Cédula)</p>
+                    </div>
+                </div>
+                
+                <div class="proof-item">
+                    <div class="lang-content active" data-lang-content="en">
+                        <h4>LANGUAGES</h4>
+                        <p>Spanish (Native)</p>
+                        <p>English (B2) · Catalan (B2)</p>
+                    </div>
+                    <div class="lang-content" data-lang-content="es">
+                        <h4>IDIOMAS</h4>
+                        <p>Español (Nativo)</p>
+                        <p>Inglés (B2) · Catalán (B2)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CONTACT -->
+    <section class="contact">
+        <div class="container">
+            <div class="lang-content active" data-lang-content="en">
+                <h2>LET'S SOLVE PROBLEMS</h2>
+            </div>
+            <div class="lang-content" data-lang-content="es">
+                <h2>RESOLVAMOS PROBLEMAS</h2>
+            </div>
+            
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/edumecar/" target="_blank">LINKEDIN</a>
+                <a href="mailto:edu.mecar@gmail.com">EMAIL</a>
+                <a href="https://github.com/edumecar" target="_blank">GITHUB</a>
+            </div>
+        </div>
+    </section>
+    
     <footer>
-        © 2026 Eduardo Mejía. Desarrollado con 🧠 y Código.
+        <div class="lang-content active" data-lang-content="en">
+            <p>© 2026 EDUARDO MEJÍA — BARCELONA, SPAIN</p>
+            <p>Built with brutalism and real code. No templates. No BS.</p>
+        </div>
+        <div class="lang-content" data-lang-content="es">
+            <p>© 2026 EDUARDO MEJÍA — BARCELONA, ESPAÑA</p>
+            <p>Construido con brutalismo y código real. Sin plantillas. Sin tonterías.</p>
+        </div>
     </footer>
-
+    
+    <script>
+        // Language Toggle
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const langContents = document.querySelectorAll('.lang-content');
+        
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.dataset.lang;
+                
+                // Update buttons
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update content
+                langContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.dataset.langContent === lang) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
